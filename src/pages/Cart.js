@@ -22,7 +22,7 @@ const Cart = () => {
           return;
         }
 
-        const response = await axios.get('API_BASE_URL/api/cart', {
+        const response = await axios.get(`${API_BASE_URL}/api/cart`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCartItems(response.data);
@@ -46,7 +46,7 @@ const Cart = () => {
       if (!cartItem) return;
 
       if (newQuantity < 1) {
-        await axios.delete(`API_BASE_URL/api/cart/${cartItem.productId}`, {
+        await axios.delete(`${API_BASE_URL}/api/cart/${cartItem.productId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
@@ -56,12 +56,12 @@ const Cart = () => {
           return;
         }
 
-        await axios.put(`API_BASE_URL/api/cart/${cartItem.productId}`, 
+        await axios.put(`${API_BASE_URL}/api/cart/${cartItem.productId}`, 
           { quantity: newQuantity },
           { headers: { Authorization: `Bearer ${token}` } }
         );
       }
-      const response = await axios.get('API_BASE_URL/api/cart', {
+      const response = await axios.get(`${API_BASE_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCartItems(response.data);
@@ -89,7 +89,7 @@ const Cart = () => {
       await axios.delete(`API_BASE_URL/api/cart/${cartItem.productId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const response = await axios.get('API_BASE_URL/api/cart', {
+      const response = await axios.get(`${API_BASE_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCartItems(response.data);
@@ -119,7 +119,7 @@ const Cart = () => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const response = await axios.get('API_BASE_URL/api/auth/me', {
+        const response = await axios.get(`${API_BASE_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         userData = response.data;
@@ -421,7 +421,7 @@ const Cart = () => {
 
       console.log('🛒 Creating order after payment:', orderData);
 
-      const response = await axios.post('API_BASE_URL/api/orders', orderData, {
+      const response = await axios.post(`${API_BASE_URL}/api/orders`, orderData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -429,9 +429,9 @@ const Cart = () => {
         console.log('✅ Order created successfully:', response.data.id);
         alert('บันทึกคำสั่งซื้อสำเร็จ! หมายเลขคำสั่งซื้อ: ' + response.data.id);
         // ล้างตะกร้าหลังบันทึกคำสั่งซื้อ
-        await axios.delete('API_BASE_URL/api/cart/clear');
+        await axios.delete(`${API_BASE_URL}/api/cart/clear`);
         // รีเฟรชข้อมูลตะกร้า
-        const cartResponse = await axios.get('API_BASE_URL/api/cart');
+        const cartResponse = await axios.get(`${API_BASE_URL}/api/cart`);
         setCartItems(cartResponse.data);
       }
     } catch (error) {

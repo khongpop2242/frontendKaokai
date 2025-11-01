@@ -94,7 +94,7 @@ const ProductDetail = () => {
 
     setAddingToCart(true);
     try {
-      await axios.post('API_BASE_URL/api/cart', {
+      await axios.post(`${API_BASE_URL}/api/cart`, {
         productId: product.id,
         quantity: quantity
       }, {
@@ -138,7 +138,7 @@ const ProductDetail = () => {
         setNotificationMessage(`ลบ "${product.name}" ออกจากรายการโปรดแล้ว`);
       } else {
         // เพิ่มเข้า favorites
-        await axios.post('API_BASE_URL/api/favorites', {
+        await axios.post(`${API_BASE_URL}/api/favorites`, {
           productId: id
         }, {
           headers: { Authorization: `Bearer ${token}` }
