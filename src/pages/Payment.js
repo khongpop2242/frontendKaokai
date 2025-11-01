@@ -51,7 +51,7 @@ const Payment = () => {
       let userId = null;
       if (token) {
         try {
-          const userResponse = await axios.get('API_BASE_URL/api/user', {
+          const userResponse = await axios.get(\`${API_BASE_URL}/api/user', {
             headers: { Authorization: `Bearer ${token}` }
           });
           userId = userResponse.data?.id;
@@ -65,7 +65,7 @@ const Payment = () => {
         ? JSON.stringify(orderData.deliveryAddress)
         : JSON.stringify(orderData.pickupAddress);
 
-      const response = await axios.post('API_BASE_URL/api/checkout/create', {
+      const response = await axios.post(\`${API_BASE_URL}/api/checkout/create', {
         amount: orderData.totalAmount * 100, // แปลงเป็น satang
         email: orderData.customerEmail,
         userId: userId,

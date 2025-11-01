@@ -31,7 +31,7 @@ export default function Login() {
 
     setLoading(true);
     try {
-      const res = await axios.post('API_BASE_URL/api/auth/login', { email, password });
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       window.location.href = '/profile';
     } catch (err) {

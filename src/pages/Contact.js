@@ -14,7 +14,7 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('API_BASE_URL/api/contact', form);
+      const res = await axios.post(`${API_BASE_URL}/api/contact`, form);
       if (res.data?.success) {
         alert('ส่งข้อความเรียบร้อยแล้ว');
         setForm({ name: '', email: '', phone: '', subject: '', message: '' });
