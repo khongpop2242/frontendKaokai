@@ -1,6 +1,6 @@
 # Render.yaml configuration for frontend deployment
 services:
-  - type: web
+  - type: static
     name: frontend-kaokai
     rootDir: .
     plan: free
