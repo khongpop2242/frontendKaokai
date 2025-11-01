@@ -33,10 +33,10 @@ const OrderDetail = () => {
       if (!token) { navigate('/login'); return; }
 
       const [orderRes, meRes] = await Promise.all([
-        axios.get(`API_BASE_URL/api/orders/${orderId}`, {
+        axios.get(`${API_BASE_URL}/api/orders/${orderId}`, {
           headers: { Authorization: `Bearer ${token}` }, timeout: 10000
         }),
-        axios.get(`API_BASE_URL/api/auth/me`, {
+        axios.get(`${API_BASE_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }, timeout: 10000
         })
       ]);

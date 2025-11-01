@@ -39,7 +39,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`API_BASE_URL/api/products/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/products/${id}`);
         setProduct(response.data);
       } catch (err) {
         setError('ไม่พบสินค้า');
@@ -53,7 +53,7 @@ const ProductDetail = () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await axios.get(`API_BASE_URL/api/favorites/${id}`, {
+          const response = await axios.get(`${API_BASE_URL}/api/favorites/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setIsFavorite(response.data.isFavorite);
@@ -131,7 +131,7 @@ const ProductDetail = () => {
     try {
       if (isFavorite) {
         // ลบออกจาก favorites
-        await axios.delete(`API_BASE_URL/api/favorites/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/favorites/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setIsFavorite(false);

@@ -44,7 +44,7 @@ const Favorites = () => {
   const removeFavorite = async (productId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`API_BASE_URL/api/favorites/${productId}`, {
+      await axios.delete(`${API_BASE_URL}/api/favorites/${productId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

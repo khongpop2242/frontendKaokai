@@ -16,12 +16,12 @@ const CheckoutSuccess = () => {
   const fetchSessionData = useCallback(async (sessionId) => {
     try {
       // ดึงข้อมูล session
-      const sessionResponse = await axios.get(`API_BASE_URL/api/checkout/session/${sessionId}`);
+      const sessionResponse = await axios.get(`${API_BASE_URL}/api/checkout/session/${sessionId}`);
       setSessionData(sessionResponse.data);
       
       // สร้างคำสั่งซื้อจาก session
       try {
-        const orderResponse = await axios.post(`API_BASE_URL/api/checkout/session/${sessionId}/create-order`);
+        const orderResponse = await axios.post(`${API_BASE_URL}/api/checkout/session/${sessionId}/create-order`);
         console.log('✅ Order created:', orderResponse.data);
       } catch (orderError) {
         console.log('⚠️ Order might already exist or error occurred:', orderError.response?.data?.message);

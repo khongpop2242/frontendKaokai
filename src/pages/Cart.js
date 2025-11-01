@@ -86,7 +86,7 @@ const Cart = () => {
       const cartItem = cartItems.find(item => item.id === cartItemId);
       if (!cartItem) return;
 
-      await axios.delete(`API_BASE_URL/api/cart/${cartItem.productId}`, {
+      await axios.delete(`${API_BASE_URL}/api/cart/${cartItem.productId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const response = await axios.get(`${API_BASE_URL}/api/cart`, {
@@ -380,7 +380,7 @@ const Cart = () => {
     if (pollTimer) clearInterval(pollTimer);
     const timer = setInterval(async () => {
       try {
-        const { data } = await axios.get(`API_BASE_URL/api/payments/${paymentIntentId}/status`);
+        const { data } = await axios.get(`${API_BASE_URL}/api/payments/${paymentIntentId}/status`);
         setPaymentStatus(data.status);
         if (data.status === 'succeeded') {
           // เมื่อชำระเงินสำเร็จ ให้บันทึกคำสั่งซื้อ
