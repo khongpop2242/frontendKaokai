@@ -16,10 +16,13 @@ export default function ForgotPassword() {
     setLoading(true);
     
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/auth/forgot-password`, { email });
+      const res = await axios.post(`${API_BASE_URL}/api/auth/forgot-password`, { email }, {
+        timeout: 30000 // 30 seconds timeout
+      });
       setMessage(res.data.message);
     } catch (err) {
-      setError(err?.response?.data?.message || 'เกิดข้อผิดพลาด');
+      console.error('Forgot password error:', err);
+      setError(err?.response?.data?.message || err.message || 'เกิดข้อผิดพลาด');
     } finally {
       setLoading(false);
     }
