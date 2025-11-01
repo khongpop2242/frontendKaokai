@@ -31,7 +31,7 @@ const CheckoutSuccess = () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const ordersResponse = await axios.get(\`${API_BASE_URL}/api/orders', {
+          const ordersResponse = await axios.get(`${API_BASE_URL}/api/orders`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           

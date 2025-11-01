@@ -24,7 +24,7 @@ const Favorites = () => {
         return;
       }
 
-      const response = await axios.get(\`${API_BASE_URL}/api/favorites', {
+      const response = await axios.get(`${API_BASE_URL}/api/favorites`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
