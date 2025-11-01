@@ -11,4 +11,6 @@ services:
         value: 18.x
       - key: NPM_VERSION
         value: 9.x
+      - key: REACT_APP_API_URL
+        value: https://backend-kaokai.onrender.com
 
