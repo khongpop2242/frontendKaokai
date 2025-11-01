@@ -1,0 +1,14 @@
+# Render.yaml configuration for frontend deployment
+services:
+  - type: web
+    name: frontend-kaokai
+    rootDir: .
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./build
+    envVars:
+      - key: NODE_VERSION
+        value: 18.x
+      - key: NPM_VERSION
+        value: 9.x
+
