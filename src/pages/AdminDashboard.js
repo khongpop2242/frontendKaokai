@@ -35,7 +35,7 @@ const AdminDashboard = () => {
   const checkUserRole = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('API_BASE_URL/api/auth/me', {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('API_BASE_URL/api/admin/users', {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data);
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
   const updateUserRole = async (userId, newRole) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`API_BASE_URL/api/admin/users/${userId}/role`, 
+      await axios.put(`${API_BASE_URL}/api/admin/users/${userId}/role`, 
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('API_BASE_URL/api/admin/products', {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/products`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProducts(response.data);
@@ -113,8 +113,8 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('token');
       const url = editingProduct 
-        ? `API_BASE_URL/api/admin/products/${editingProduct.id}`
-        : 'API_BASE_URL/api/admin/products';
+        ? `${API_BASE_URL}/api/admin/products/${editingProduct.id}`
+        : `${API_BASE_URL}/api/admin/products`;
       
       const method = editingProduct ? 'PUT' : 'POST';
       
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`API_BASE_URL/api/admin/products/${productId}`, {
+      await axios.delete(`${API_BASE_URL}/api/admin/products/${productId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
   const updateProductStock = async (productId, action, quantity) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`API_BASE_URL/api/admin/products/${productId}/stock`, 
+      await axios.put(`${API_BASE_URL}/api/admin/products/${productId}/stock`, 
         { action, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -172,7 +172,7 @@ const AdminDashboard = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('API_BASE_URL/api/admin/orders', {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/orders`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setOrders(response.data);
@@ -185,7 +185,7 @@ const AdminDashboard = () => {
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`API_BASE_URL/api/admin/orders/${orderId}/status`, 
+      await axios.put(`${API_BASE_URL}/api/admin/orders/${orderId}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -204,7 +204,7 @@ const AdminDashboard = () => {
   const viewOrderDetails = async (order) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`API_BASE_URL/api/admin/orders/${order.id}`, {
+      const response = await axios.get(`${API_BASE_URL}/api/admin/orders/${order.id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSelectedOrder(response.data);
